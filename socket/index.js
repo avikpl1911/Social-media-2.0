@@ -1,8 +1,24 @@
-const io = require("socket.io")(8900, {
-    cors: {
-      origin: "http://localhost:3000",
-    },
-  });
+const http = require("http");
+const express = require("express");
+const socketio = require("socket.io");
+const cors =  require("cors");
+
+
+
+const app = express();
+
+
+
+const server = http.createServer(app)
+
+app.use(cors());
+
+const io = socketio(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"]
+  }
+});
   
   let users = [];
   
@@ -52,3 +68,6 @@ const io = require("socket.io")(8900, {
       io.emit("getUsers", users);
     });
   });
+
+
+  server.listen(8900 || process.env.PORT,()=>console.log("server has started"));
