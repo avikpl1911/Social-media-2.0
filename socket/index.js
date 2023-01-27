@@ -14,9 +14,8 @@ const server = http.createServer(app)
 app.use(cors());
 
 const io = socketio(server, {
-  allowRequest: (req, callback) => {
-    const noOriginHeader = req.headers.origin === undefined;
-    callback(null, noOriginHeader);
+  cors: {
+    origin: '*',
   }
 });
   
