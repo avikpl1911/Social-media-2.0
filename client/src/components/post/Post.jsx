@@ -21,7 +21,7 @@ export default function Post({post}) {
          try {
             await axios.put(process.env.REACT_APP_API_URL+"/posts/"+post._id+"/like",{userId:currentUser._id});
             
-            const res =  await axios.get(process.env.REACT_APP_API_URL+"http://localhost:8800/api/posts/"+post._id);
+            const res =  await axios.get(process.env.REACT_APP_API_URL+"/posts/"+post._id);
            
           
             
