@@ -14,9 +14,9 @@ const server = http.createServer(app)
 app.use(cors());
 
 const io = socketio(server, {
-  cors: {
-    origin: "https://social-media-2-avikpl1911.vercel.app",
-    methods: ["GET", "POST"]
+  allowRequest: (req, callback) => {
+    const noOriginHeader = req.headers.origin === undefined;
+    callback(null, noOriginHeader);
   }
 });
   
