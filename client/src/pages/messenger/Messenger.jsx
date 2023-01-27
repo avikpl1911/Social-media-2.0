@@ -20,8 +20,8 @@ export default function Messenger() {
   const scrollRef = useRef();
 
   useEffect(() => {
-    socket.current = io("http://localhost:8900");
-    socket.current.once("getMessage", (data) => {
+    socket.current = io("https://socket-server-2-0.onrender.com");
+    socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
         text: data.text,
