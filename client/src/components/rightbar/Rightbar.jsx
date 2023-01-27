@@ -91,7 +91,7 @@ export default function Rightbar({ user }) {
             userId: currentUser._id
           });
           dispatch({ type: "UNFOLLOW", payload: user._id });
-          await axios.post(process.env.REACT_APP_API_URL+"/conversations",{userId: user._id,receiverId:currentUser._id})
+          
           setFollowed(res.data);
         } else {
           const res= await axios.put(process.env.REACT_APP_API_URL+`/users/${user._id}/follow`, {
@@ -99,7 +99,8 @@ export default function Rightbar({ user }) {
           });
           dispatch({ type: "FOLLOW", payload: user._id });
           setFollowed(res.data);
-          console.log(res.data)
+          await axios.post(process.env.REACT_APP_API_URL+"/conversations",{userId: user._id,receiverId:currentUser._id})
+          
         }
         
       } catch (err) {
