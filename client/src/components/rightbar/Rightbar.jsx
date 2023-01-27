@@ -72,7 +72,7 @@ export default function Rightbar({ user }) {
       if (typeof user._id !== "undefined"){const getFriends = async () => {
         
         try {
-          const friendList = await axios.get(`${process.env.REACT_APP_API_URL}/users/friends/${user._id}`,{timeout:1000}  );
+          const friendList = await axios.get(`${process.env.REACT_APP_API_URL}/users/friends/${user._id}`  );
           setFriends(friendList.data);
         } catch (err) {
           console.log(err);
@@ -91,6 +91,7 @@ export default function Rightbar({ user }) {
             userId: currentUser._id
           });
           dispatch({ type: "UNFOLLOW", payload: user._id });
+          await axios.post(+process.env.REACT_APP_API_URL+"/conversations",{userId: user._id,receiverId:currentUser._id})
           setFollowed(res.data);
         } else {
           const res= await axios.put(process.env.REACT_APP_API_URL+`/users/${user._id}/follow`, {
