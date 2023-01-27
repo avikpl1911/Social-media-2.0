@@ -99,11 +99,12 @@ export default function Rightbar({ user }) {
           });
           dispatch({ type: "FOLLOW", payload: user._id });
           setFollowed(res.data);
-          await axios.post(process.env.REACT_APP_API_URL+"/conversations",{userId: user._id,receiverId:currentUser._id})
+          await axios.post(process.env.REACT_APP_API_URL+"/conversations",{senderId: user._id,receiverId:currentUser._id})
           
         }
         
       } catch (err) {
+        console.log(err);
       }
     };
   
