@@ -24,7 +24,7 @@ export default function Register() {
             }
 
               try {
-                await axios.post(process.env.REACT_APP_API_URL+"/auth/register",user,{timeout:1000});
+                await axios.post(process.env.REACT_APP_API_URL+"/auth/register",user);
                 history.push("/login");
               } catch (err) {
                 console.log(err)
